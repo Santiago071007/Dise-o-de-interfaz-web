@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar Crédito - CreditSmart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f4f6f8; color: #333; line-height: 1.6; }
+
+    header {
+      background: #1E3A8A;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo { font-size: 1.8rem; font-weight: 700; }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    header nav a:hover, header nav a.active { color: #FACC15; }
+
+    main {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    h1, h2 { color: #1E3A8A; margin-bottom: 1rem; }
+    h1 { text-align: center; font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; margin-top: 2rem; }
+
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #1E3A8A;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #1E3A8A;
+      outline: none;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .buttons button {
+      flex: 1;
+      padding: 0.9rem;
+      font-weight: 600;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-size: 1rem;
+    }
+    .buttons .submit-btn {
+      background: #1E3A8A;
+      color: #fff;
+    }
+    .buttons .submit-btn:hover { background: #15306d; transform: translateY(-2px); }
+
+    .buttons .reset-btn {
+      background: #FACC15;
+      color: #1E3A8A;
+    }
+    .buttons .reset-btn:hover { background: #e5b60f; transform: translateY(-2px); }
+
+    footer {
+      background: #1E3A8A;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    @media(max-width:768px){
+      h1{font-size:2rem;}
+      h2{font-size:1.5rem;}
+      .buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CreditSmart</div>
+  <nav>
+    <a href="index.html"> Inicio </a>
+    <a href="simulador.html"> Simulador de crédito </a>
+    <a href="solicitar.html" class="active">Solicitar crédito</a>
+  </nav>
+</header>
+
+<main>
+  <h1> Formulario de Solicitud de Crédito </h1>
+
+  <form>
+    <!-- Datos Personales -->
+    <h2> Datos Personales </h2>
+    <div class="form-group">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" placeholder="Ej: persona prueba">
+    </div>
+    <div class="form-group">
+      <label for="cedula"> Cédula </label>
+      <input type="number" id="cedula" placeholder="Ej: 1096329156">
+    </div>
+    <div class="form-group">
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" placeholder="ejemplo@correo.com">
+    </div>
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" placeholder="Ej:300 1234567">
+    </div>
+
+    <!-- Datos del Crédito -->
+    <h2>Datos del Crédito</h2>
+    <div class="form-group">
+      <label for="tipo">Tipo de crédito</label>
+      <select id="tipo">
+        <option value="libre-inversion"> Crédito de Libre Inversión</option>
+        <option value="vehiculo"> Crédito Vehícular</option>
+        <option value="vivienda"> Crédito de Vivienda</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="monto"> Monto solicitado</label>
+      <input type="number" id="monto" placeholder="Ej: 10000000">
+    </div>
+    <div class="form-group">
+      <label for="plazo"> Plazo en meses </label>
+      <select id="plazo">
+        <option value="12">12</option>
+        <option value="24">24</option>
+        <option value="36">36</option>
+        <option value="48">48</option>
+        <option value="60">60</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="destino"> Destino del crédito </label>
+      <textarea id="destino" placeholder="Describa el uso que dará al crédito"></textarea>
+    </div>
+
+    <!-- Datos Laborales -->
+    <h2>Datos Laborales</h2>
+    <div class="form-group">
+      <label for="empresa"> Empresa donde trabaja </label>
+      <input type="text" id="empresa" placeholder="Ej: FinTech Solutions S.A.S">
+    </div>
+    <div class="form-group">
+      <label for="cargo"> Cargo </label>
+      <input type="text" id="cargo" placeholder="Ej: Analista de Sistemas">
+    </div>
+    <div class="form-group">
+      <label for="ingresos"> Ingresos mensuales </label>
+      <input type="number" id="ingresos" placeholder="Ej: 2500000">
+    </div>
+
+    <!-- Botones -->
+    <div class="buttons">
+      <button type="submit" class="submit-btn"> Enviar Solicitud </button>
+      <button type="reset" class="reset-btn"> Limpiar Formulario </button>
+    </div>
+  </form>
+</main>
+
+<footer>
+  © 2025 CreditSmart. Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
+

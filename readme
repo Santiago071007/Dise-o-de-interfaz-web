@@ -1,0 +1,42 @@
+CreditSmart - Sistema de Gestión de Solicitudes de Crédito
+
+Nombre: David Santiago Cantor Torres
+
+Descripcion: CreditSmart es una plataforma que funciona para consultar creditos disponibles, indagar y conocer acerca de ellos, asi como poder solicitarlo y hacer una simulacion de los prestamos disponibles
+
+Estructura de datos:
+
+- index.html = es la pagina de inicio, donde va a mostrar un texto que sea acogedor a el usuario, permitiendole al usuario poder visualizar las opciones de credito que maneja el sistema, asi como que pueda ver las caracteristicas de los creditos, como su tasa de interes, el monto que esta disponible para el credito que el usuario elija, asi como el plazo maximo que tiene el credito.
+
+- solicitar.html = es la pagina donde el usuario teniendo ya identificado cual sera su credito, diligenciara un formulario donde debe llenar con datos personales, asi mismo como llenar sus datos laborales y de el credito seleccionado, para despues enviar este formulario y esperar la aprobacion o la respuesta referente a su solicitud
+
+- simulador.html = es la pagina donde el usuario puede realizar un simulacro de cual seria su credito a solicitar, asi mismo conocer cual sera el monto que va a solicitar mediante una barra que permite seleccionar mediante el cursor el monto deseado,el tiempo deseado por el usuario, y la tasa de interes que se ajuste mas a el credito, el sistema le dara un aproximado de el valor de su cuota mensual segun los datos que el usuario haya diligenciado anteiormente. en la parte de abajo el sistema volvera a mostrar los creditos disponibles, para que el usuario no tenga que volver a el inicio para recordar cuales eran.
+
+- styles.css = esta pagina esta enfocada a los estilos de el sistema, es decir son los estilos que tienen los html, como el color del fondo, color de los botones, en general el estilo del entorno
+
+- README.md : Documentación del proyecto.
+
+* Instrucciones de uso de el proyecto.
+- copiar y pegar los html en el dispositivo
+-ejecutar el index.html con la extension live server, para que abra en el navegador que estemos usando
+- navegar entre las paginas html que tenemos
+
+- capturas de pantalla:
+
+Index :
+
+![Index](screenshots/index.png)
+![Index](screenshots/index2.png)
+
+simulador:
+
+![Simulador](screenshots/simulador1.png)
+![Simulador](screenshots/simulador2.png)
+![Simulador](screenshots/simulador3.png)
+
+solicitar:
+
+![Solicitar](screenshots/solicitar1.png)
+![Solicitar](screenshots/solicitar2.png)
+![Solicitar](screenshots/solicitar3.png)
+![Solicitar](screenshots/solicitar4.png)

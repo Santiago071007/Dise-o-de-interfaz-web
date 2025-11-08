@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Crédito - CreditSmart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+    body { background:#f4f6f8; color:#333; line-height:1.6; }
+    header {
+      background:#1E3A8A;
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 2rem;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+    header .logo{font-size:1.8rem;font-weight:700;}
+    header nav a{
+      color:#fff;
+      text-decoration:none;
+      margin-left:1.5rem;
+      font-weight:500;
+      transition: color 0.3s ease;
+    }
+    header nav a:hover, header nav a.active{color:#FACC15;}
+
+    main{max-width:900px;margin:4rem auto;padding:0 2rem;}
+
+    h1{text-align:center;color:#1E3A8A;font-size:2.5rem;margin-bottom:2rem;}
+    .simulador-card{
+      background:#fff;
+      padding:2rem;
+      border-radius:15px;
+      box-shadow:0 15px 35px rgba(0,0,0,0.1);
+      margin-bottom:4rem;
+    }
+    .form-group{margin-bottom:1.5rem;}
+    .form-group label{font-weight:600;color:#1E3A8A;margin-bottom:0.5rem;display:block;}
+    .form-group input[type=range]{width:100%;}
+    .form-group input, .form-group select, .form-group textarea{
+      padding:0.7rem 1rem;
+      border-radius:10px;
+      border:1px solid #ccc;
+      width:100%;
+      font-size:1rem;
+      transition:border-color 0.3s ease;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus{
+      border-color:#1E3A8A;
+      outline:none;
+    }
+    textarea{resize:vertical;min-height:60px;}
+
+    .btn-primary{
+      background:#1E3A8A;
+      color:#fff;
+      padding:0.8rem 1.5rem;
+      font-weight:600;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      transition:transform 0.3s ease, background 0.3s ease;
+      margin-top:1rem;
+    }
+    .btn-primary:hover{background:#15306d; transform:translateY(-2px);}
+
+    .resultado{
+      margin-top:2rem;
+      padding:1.5rem;
+      background:#FACC15;
+      color:#1E3A8A;
+      border-radius:12px;
+      text-align:center;
+      font-size:1.2rem;
+      font-weight:600;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:2rem;
+      margin-top:2rem;
+    }
+    .card{
+      background:#fff;
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 15px 35px rgba(0,0,0,0.1);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(0,0,0,0.15);}
+    .card img{width:100%;height:180px;object-fit:cover;transition:transform 0.5s ease;}
+    .card:hover img{transform:scale(1.05);}
+    .card-body{padding:1rem; text-align:left; flex:1; display:flex; flex-direction:column; justify-content:space-between;}
+    .card-body h3{color:#1E3A8A;margin-bottom:0.5rem;}
+    .card-body p{margin-bottom:0.5rem;color:#555;}
+    .card-body button{
+      background:#1E3A8A;color:#fff;border:none;border-radius:10px;padding:0.7rem;cursor:pointer;transition:background 0.3s ease, transform 0.3s ease;margin-top:1rem;
+    }
+    .card-body button:hover{background:#15306d; transform:translateY(-2px);}
+
+    footer{background:#1E3A8A;color:#fff;text-align:center;padding:2rem;margin-top:4rem;}
+
+    @media(max-width:768px){
+      h1{font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CreditSmart</div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="simulador.html" class="active">Simulador de crédito</a>
+    <a href="solicitar.html">Solicitar crédito</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Simulador de Crédito</h1>
+
+  <div class="simulador-card">
+    <div class="form-group">
+      <label for="tipo">Tipo de crédito</label>
+      <select id="tipo">
+        <option value="libre"> Crédito de Libre Inversión</option>
+        <option value="vehiculo">Crédito Vehícular</option>
+        <option value="vivienda">Crédito de Vivienda</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="monto"> Monto ($)</label>
+      <input type="range" id="monto" min="1000000" max="200000000" step="1000000" value="10000000" oninput="updateMonto(this.value)">
+      <span id="montoVal">$10,000,000</span>
+    </div>
+    <div class="form-group">
+      <label for="plazo"> Plazo (meses)</label>
+      <input type="range" id="plazo" min="12" max="60" step="12" value="36" oninput="updatePlazo(this.value)">
+      <span id="plazoVal">36 meses</span>
+    </div>
+    <div class="form-group">
+      <label for="tasa"> Tasa de interés anual (%)</label>
+      <input type="range" id="tasa" min="5" max="20" step="0.5" value="10" oninput="updateTasa(this.value)">
+      <span id="tasaVal">10%</span>
+    </div>
+    <div class="form-group">
+      <label for="destino"> Destino del crédito</label>
+      <textarea id="destino" placeholder="Ej: Comprar vehículo, remodelar vivienda..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="simular()">Simular Crédito</button>
+
+    <div class="resultado" id="resultado">
+      La cuota mensual de tu credito quedaria en : $0
+    </div>
+  </div>
+
+  <h2> Opciones de crédito disponibles</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/2198401601/photo/handshake-teamwork-contract-or-onboarding-b2b-partnership-agreement-or-deal-welcome-business.jpg?s=2048x2048&w=is&k=20&c=erOQc9d1O3q1O0DBs2XDgO-OqdjQXEmI6tMD4bXA4Nc=" alt="Crédito Libre Inversión">
+      <div class="card-body">
+        <h3>Crédito de Libre Inversión 💰</h3>
+        <p>Tasa promedio: 18% E.A.</p>
+        <p>Monto: $1.000.000 - $20.000.000</p>
+        <button>Ver detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/2178101168/photo/client-secured-approval-for-mortgage-loan-after-reviewing-financial-agreements-outlined-in.jpg?s=2048x2048&w=is&k=20&c=UviBLJye5ua1sGS9qgUHIJGcWPOoQuPr-HdoFhtLKng=" alt="Crédito Vehículo">
+      <div class="card-body">
+        <h3>Crédito Vehícular 🏎️</h3>
+        <p>Tasa promedio: 12% E.A.</p>
+        <p>Monto: $5.000.000 - $50.000.000</p>
+        <button>Ver detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://media.istockphoto.com/id/2150750509/photo/loving-couple-holding-the-keys-of-their-new-house.jpg?s=2048x2048&w=is&k=20&c=mZ3O-KcYtbpet_nfHIMT__LgioYADILUKUd0xXmiQIM=" alt="Crédito Vivienda">
+      <div class="card-body">
+        <h3>Crédito de Vivienda 🏠</h3>
+        <p>Tasa promedio: 9% E.A.</p>
+        <p>Monto: $20.000.000 - $200.000.000</p>
+        <button>Ver detalles</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2025 CreditSmart. Todos los derechos reservados.
+</footer>
+
+<script>
+  function updateMonto(val){document.getElementById('montoVal').innerText = '$' + Number(val).toLocaleString();}
+  function updatePlazo(val){document.getElementById('plazoVal').innerText = val + ' meses';}
+  function updateTasa(val){document.getElementById('tasaVal').innerText = val + '%';}
+
+  function simular(){
+    const monto = Number(document.getElementById('monto').value);
+    const plazo = Number(document.getElementById('plazo').value);
+    const tasa = Number(document.getElementById('tasa').value)/100;
+    // fórmula de cuota mensual (interés simple aproximado)
+    const cuota = (monto * (1 + tasa * (plazo/12)))/plazo;
+    document.getElementById('resultado').innerText = 'Tu cuota mensual aproximada será: $' + cuota.toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+</script>
+
+</body>
+</html>
